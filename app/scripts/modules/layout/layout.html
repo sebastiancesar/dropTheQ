@@ -1,0 +1,28 @@
+<div ng-cloak class="playlist-search-box" ng-hide="vm.playlistLoaded">
+    <h5 class="text-center">
+        dropTheQ
+    </h5>
+</div>
+
+<div>
+    <playlist-search-box></playlist-search-box>
+</div>
+
+<div class="row" style="padding:20px">
+    
+    <div class="col-lg-4">
+        <youtube-player></youtube-player>
+        <playlist-controls></playlist-controls>
+    </div>
+
+    <div class="col-lg-4">
+        <playlist></playlist>    
+    </div>
+        
+    <div class="col-lg-4">
+        <section class="search">
+            <search-box></search-box>
+            <search-results></search-results>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+ <div class="row" ng-hide="vm.playlistLoaded">
+    <div class="text-center col-sm-4 col-sm-offset-4"
+         ng-show="vm.loadingPlaylists">
+         <img ng-src="images/loading.gif">
+    </div>
+    <form class="form-horizontal" ng-submit="vm.searchList()">
+        <div class="form-group" ng-show="!vm.loadingPlaylists">
+            <div class="col-sm-4 col-sm-offset-4">
+                <input type="text"
+                       ng-model="vm.listName"
+                       placeholder="playlists"
+                       uib-typeahead="playlist for playlist in vm.playlists | filter: $viewValue | limitTo: 8"
+                       typeahead-no-results="noResults"
+                       typeahead-on-select="vm.selectPlaylist($item)"
+                       typeahead-editable="true"
+                       class="form-control">
+                <!-- <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i> -->
+            </div>
+            <a class="low-padding no-bg btn"
+               ng-click="vm.selectPlaylist(vm.listName)">
+                <span ng-show="noResults">
+                    Create
+                </span>
+                <span ng-show="!noResults">
+                    Join
+                </span>
+            </a>
+        </div>
+    </form>
+</div>

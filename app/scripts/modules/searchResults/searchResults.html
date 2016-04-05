@@ -1,0 +1,9 @@
+<div class="results row spacer">
+    <div class="col-lg-6" ng-repeat="item in vm.results">
+        <a href="" ng-click="vm.addItem(item)" class="thumbnail">
+            <img ng-src="{{item.snippet.thumbnails.medium.url}}"
+                 alt="result">
+            <p class="text-muted caption small text-ellipsis">{{item.snippet.title}}</p>
+        </a>
+    </div>
+</div>
