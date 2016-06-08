@@ -12,7 +12,8 @@
     "rxjs": "^4.0.7",
     "rx-angular": "rx.angular#^1.1.2",
     "lodash": "^4.1.0",
-    "angular-bootstrap": "^1.1.2"
+    "angular-bootstrap": "^1.1.2",
+    "ngReact": "^0.3.0"
   },
   "overrides": {
     "bootstrap": {

@@ -24,6 +24,23 @@ module.exports = function (grunt) {
   // Define the configuration for all the tasks
   grunt.initConfig({
 
+    babel: {
+      options: {
+        sourceMap: true,
+        presets: ['es2015', 'react'],
+        plugins: ['transform-react-jsx']
+      },
+      jsx: {
+        files: [{
+          expand: true,
+          cwd: 'app/scripts/modules/',
+          extDot: 'last',
+          src: ['{,*/}*.jsx'],
+          dest: 'app/scripts/modules/',
+          ext: '.js'
+        }]
+      }
+    },
     // Project settings
     yeoman: appConfig,
 
@@ -32,6 +49,13 @@ module.exports = function (grunt) {
       bower: {
         files: ['bower.json'],
         tasks: ['wiredep']
+      },
+      jsx: {
+        files: ['<%= yeoman.app %>/scripts/modules/{,*/}*.jsx'],
+        tasks: ['newer:babel'],
+        options: {
+          livereload: '<%= connect.options.livereload %>'
+        }
       },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
@@ -399,6 +423,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
+      'babel',
       'concurrent:server',
       'autoprefixer:server',
       'connect:livereload',
@@ -438,6 +463,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
+    'babel',
     'newer:jshint',
     'test',
     'build'
