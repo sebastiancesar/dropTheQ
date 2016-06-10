@@ -3,13 +3,12 @@
   
   var playlistControlsService = function ($log, streamsService) {
     return function (playlistService) {
-        var service = {
-        play: play,
-        playItem: playItem,
-        stop: stop,
-        next: next
-      };
-      var playlistStream = streamsService.getStream('playlist');
+      var service = {
+          play: play,
+          playItem: playItem,
+          stop: stop,
+          next: next },
+        playlistStream = streamsService.getStream('playlist');
 
       function updatePlaying (item) {
         playlistStream.onNext({

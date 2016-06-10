@@ -39,14 +39,18 @@
           return {
             items: stream.items,
             playlistLoaded: true,
-            playlistName: playlistService.playlist.getName()
+            playlistName: playlistService.playlist.getName(),
+            currentPlaying: playlistService.getCurrentPlaying()
           };
         }
         switch (stream.event) {
         case 'update':
-          $log.debug('playlistController > playlist updated');
+          $log.debug('PlaylistComponent > playlist updated');
           this.setState(updatedPlaylistState(stream));
           break;
+        case 'playing':
+          $log.debug('PlaylistComponent > playing updated');
+          this.setState({currentPlaying: playlistService.getCurrentPlaying()});
         }
       },
       componentWillMount: function () {
@@ -54,18 +58,20 @@
         playlistStream.subscribe(this.playlistHandle);
       },
       getInitialState: function () {
-        return {playlistLoaded: false, items: []};
+        return {playlistLoaded: false, items: [], currentPlaying: -1};
       },
       getPlaylistItems: function () {
-        var items = this.state.items.map(function (item) {
-          return (
-            <PlaylistItemComponent 
-              key={item.$id} 
-              item={item}
-              removeItem={playlistService.removeItem}
-              selectItem={playlistService.playItem} />
+        var currentPlaying = this.state.currentPlaying,
+          items = this.state.items.map(function (item) {
+            return (
+              <PlaylistItemComponent 
+                key={item.$id} 
+                item={item}
+                removeItem={playlistService.removeItem}
+                selectItem={playlistService.playItem}
+                currentPlaying={currentPlaying} />
             );
-        });
+          });
         return items;
       },
       render: function () {
