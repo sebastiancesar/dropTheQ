@@ -6,7 +6,7 @@
       restrict: 'E',
       controller: 'ControlsController as vm',
       scope: {},
-      templateUrl: 'scripts/modules/playlist/controls.html'
+      templateUrl: 'scripts/modules/playlist/controls/controls.html'
     };
   };
 
